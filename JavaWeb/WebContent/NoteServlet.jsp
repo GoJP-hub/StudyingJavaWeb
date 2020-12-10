@@ -29,29 +29,29 @@
 <ul>
 <li>doGet method:  passes a value to server by attaching at URL (explicitly viewable)</li>
 <li>doPost method:  passes a value to server by attaching in HTML body (implicit= unviewable)</li>
-</ui>
+</ul>
 
 <h5>Structure of using Servlet</h5>
 <ul>
 <li>JSP is the front side. JSP calls the Servlet, which is the server side</li>
 <li>Key point is that JSP is passing over the data to Servlet.</li>
 <li>This can be done by various methods including Form</li>
-</ui>
+</ul>
 
 <h5>How to use Form</h5>
-<li>Calling Form Tag: < form method="POST" action="./FormServlet"></li>
-<li>TextFields: Create a field by < P> and define trait & data by < input type="text" name="text 1"></li>
-<li>Request Trigger: Create a field < input type="submit" value="POSTで送信"></li>
+<ul>
+<li>Calling Form Tag: [form method="POST" action="./FormServlet"]</li>
+<li>TextFields: Create a field by [P] and define trait and data by [input type="text" name="text 1"]</li>
+<li>Request Trigger: Create a field [input type="submit" value="POSTで送信"]</li>
 <li>Explanation-- action: sets the destination of POST, form method: defines type of HTTP</li>
 <li>Explanation-- name: variable name that Servlet will use to notice</li>
-<ul>
 <li>Template</li>
-</ui>
+</ul>
 
 <h5>Template</h5>
 <ul>
 <li>Template</li>
-</ui>
+</ul>
 
 </body>
 </html>
