@@ -1,3 +1,5 @@
+package basic01HelloWorld;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -12,32 +14,32 @@ public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public HelloServlet() {
+		// TODO 自動生成されたコンストラクター・スタブ
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//setting the format of response: HTML page with UTF-8 character type
-		response.setContentType("type/html");
-		response.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html");
+		resp.setCharacterEncoding("UTF-8");
 
 		//Call instance for displaying the result on the screen
-		PrintWriter pw = response.getWriter();
+		PrintWriter pw = resp.getWriter();
 
 		//adding html contents to display
 		pw.println("<html>");
 		pw.println("<head>");
-		pw.println("<title>Java入門</title>");
-		pw.println("</head>");
+		pw.println("<title>HelloServlet</title>");
 		pw.println("<body>");
-		pw.println("<h1>Hello World!!</h1>");
+		pw.println("<p>HiServlet</p>");
 		pw.println("</body>");
+		pw.println("</head>");
 		pw.println("</html>");
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		doGet(req, resp);
 	}
-
 
 }

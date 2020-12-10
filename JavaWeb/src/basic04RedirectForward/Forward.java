@@ -1,3 +1,4 @@
+package basic04RedirectForward;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -8,18 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/RedirectForward_Forward")
-public class RedirectForward_Forward extends HttpServlet{
+@WebServlet("/Forward")
+public class Forward extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	public RedirectForward_Forward() {
+	public Forward() {
 		super();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ServletContext con = req.getServletContext();
-		RequestDispatcher rd = con.getRequestDispatcher("/RedirectForward_Landing.jsp");
+		RequestDispatcher rd = con.getRequestDispatcher("/basic04RedirectForward/RedirectForward_Landing.jsp");
 
 		rd.forward(req, resp);
 	}

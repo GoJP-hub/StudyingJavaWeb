@@ -10,7 +10,7 @@
 	<p>Input form</p>
 	<p>Please insert a value</p>
 	<%-- This is for get method --%>
-	<form action="./FormServlet">
+	<form action="../FormServlet">
 		<p>
 			Insert a value here; <input type="text" name="str1">
 		</p>
@@ -21,7 +21,7 @@
 	</form>
 
 	<%-- This is for post method --%>
-	<form method="post" action="./FormServlet">
+	<form method="post" action="../FormServlet">
 		<p>
 			Insert a value here; <input type="text" name="str1">
 		</p>

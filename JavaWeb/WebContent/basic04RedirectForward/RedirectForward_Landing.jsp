@@ -8,7 +8,7 @@
 </head>
 <body>
 	<p>Landed</p>
-	<p>Redirect URL: RedirectForward_Redirect</p>
-	<p>Forward URL: RedirectForward_Forward</p>
+	<p>Redirect URL: Redirect</p>
+	<p>Forward URL: Forward</p>
 </body>
 </html>

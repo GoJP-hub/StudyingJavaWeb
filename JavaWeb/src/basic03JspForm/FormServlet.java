@@ -1,3 +1,4 @@
+package basic03JspForm;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -15,7 +16,6 @@ public class FormServlet extends HttpServlet {
 		super();
 	}
 
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("doGet was triggered");
 

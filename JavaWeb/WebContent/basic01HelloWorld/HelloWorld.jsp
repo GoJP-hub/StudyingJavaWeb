@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Java EE入門</title>
+<title>HelloWorld JSP</title>
 </head>
 <body>
-	<!-- ここはHTML -->
 	<h1>schoo WEB-campus Java入門</h1>
 	<p>Hello World!!</p>
 	<% // ここはJava %>
