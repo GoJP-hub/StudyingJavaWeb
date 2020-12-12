@@ -30,6 +30,7 @@
 <li>Req info: Redirect cannot carry, Foward can carryover</li>
 <li>transition to another web: Redirect can, Foward cannot</li>
 <li>Process speed: Redirect relatively slow, Foward relatively faster</li>
+<li>URL used are different: Redirect uses landing page's URL while Forward uses original URL (/forward)</li>
 </ul>
 
 <h5>Template</h5>
