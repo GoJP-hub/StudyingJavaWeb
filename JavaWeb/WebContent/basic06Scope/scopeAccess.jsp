@@ -8,7 +8,7 @@
 </head>
 <body>
 	<p>Input form</p>
-	<form action="../ScopeSetServlet" method="post">
+	<form action="../ControllerServletScope" method="post">
 		<p>
 			Please insert name: <input type="text" name="name_request">
 		</p>

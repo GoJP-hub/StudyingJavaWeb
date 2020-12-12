@@ -15,14 +15,14 @@ import javax.servlet.http.HttpSession;
 Description--Model class: Alternative/simplified codes for DAO
 @author go.hirano
 **********************************************/
-@WebServlet("/ScopeSetServlet")
-public class ScopeSetServlet extends HttpServlet {
+@WebServlet("/ControllerServletScope")
+public class ControllerServletScope extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ScopeSetServlet() {
+	public ControllerServletScope() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,55 +44,48 @@ public class ScopeSetServlet extends HttpServlet {
 	 **********************************************/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*********************************************
-		Description--Counts the access number from Request Scope and set as String
-		@author go.hirano
-		 **********************************************/
-		String aRequest= (String)request.getAttribute("access_request");
 
 		/*********************************************
-		Description--Counts the access number from Session Scope and set as String
+		Description--Set a variables for getting/setting attributes for each scope (session/appliaction)
 		@author go.hirano
 		 **********************************************/
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		String aSession = (String)session.getAttribute("access_session");
-
-		/*********************************************
-		Description--Counts the access number from Application Scope and set as String
-		@author go.hirano
-		 **********************************************/
 		ServletContext con = request.getServletContext();
-		String aApplication = (String)con.getAttribute("access_application");
 
 		/*********************************************
-		Description--Set a variable for counting the access frequency of each Scope
+		Description--Set a variables for tracking access
 		@author go.hirano
 		 **********************************************/
-		int accessReq = 1;
-		int accessSession = 1;
-		int accessApp = 1;
+		String trackRequest ="";
+		String trackSession ="";
+		String trackApplication ="";
 
 		/*********************************************
-		Description--Set a variable for counting the access frequency of each Scope
+		Description--Track the access from each scope
 		@author go.hirano
 		 **********************************************/
-		if(aRequest != null) {
-			accessReq = Integer.parseInt(aRequest);
-			accessReq++;
-		}
+		ModelAccessTracker tracker = new ModelAccessTracker();
+		trackRequest= tracker.trackAccessRequest(request);
+		trackSession= tracker.trackAccessSession(session);
+		trackApplication= tracker.trackAccessApplication(con);
 
-		if(aSession != null) {
-			accessSession = Integer.parseInt(aSession);
-			accessSession++;
-		}else {
-			session.setMaxInactiveInterval(60);
-		}
+		/*********************************************
+		Description--Set a variables for tracking access
+		@author go.hirano
+		 **********************************************/
+		int reqNo;
+		int sessionNo;
+		int appNo;
 
-		if(aApplication != null) {
-			accessApp= Integer.parseInt(aApplication);
-			accessApp++;
-		}
+		/*********************************************
+		Description--Counts the access number for each Scopes
+		@author go.hirano
+		 **********************************************/
+		ModelAccessCounter counter = new ModelAccessCounter();
+		reqNo = counter.countRequest(trackRequest);
+		sessionNo = counter.countSession(trackSession, session);
+		appNo = counter.countApplication(trackApplication);
 
 		/*********************************************
 		Description--Display the result page
@@ -101,9 +94,9 @@ public class ScopeSetServlet extends HttpServlet {
 		String nSession = request.getParameter("name_parameter");
 		session.setAttribute("name_parameter", nSession);
 
-		request.setAttribute("access_request", Integer.toString(accessReq));
-		session.setAttribute("access_session", Integer.toString(accessSession));
-		con.setAttribute("access_application", Integer.toString(accessApp));
+		request.setAttribute("access_request", Integer.toString(reqNo));
+		session.setAttribute("access_session", Integer.toString(sessionNo));
+		con.setAttribute("access_application", Integer.toString(appNo));
 
 		RequestDispatcher rd = con.getRequestDispatcher("/basic06Scope/scopeResult.jsp");
 		rd.forward(request, response);
