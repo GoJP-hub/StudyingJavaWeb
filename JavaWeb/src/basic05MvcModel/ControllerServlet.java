@@ -34,7 +34,7 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 	/**
-	 * Description--
+	 * Description--Method to trigger Search by ID and call relevant display
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
