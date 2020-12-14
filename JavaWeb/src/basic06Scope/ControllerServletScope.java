@@ -38,7 +38,7 @@ public class ControllerServletScope extends HttpServlet {
 	}
 
 	/*********************************************
-	Description--
+	Description--Receiving User details based on Login info
 	@author go.hirano
 	@see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 **********************************************/
