@@ -18,12 +18,8 @@ Description--Controller class for Login Processes
 public class ControllerLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ControllerLogin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/*********************************************
@@ -38,19 +34,18 @@ public class ControllerLogin extends HttpServlet {
 	}
 
 	/*********************************************
-	Description--Performs Login process via asserting Login Details and getting User details
+	Description--Performs user-access actions: Login or Logout
 	@author go.hirano
 	@see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 **********************************************/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
-
 		/*********************************************
 		Description--Set instances to store and display results of Login
 		@author go.hirano
 		 **********************************************/
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
 
@@ -58,39 +53,14 @@ public class ControllerLogin extends HttpServlet {
 		Description--Get action request driven by clicked button and perform defined action
 		@author go.hirano
 		 **********************************************/
-		String actionBtn = request.getParameter("submit");
-		if ("login".equals(actionBtn)) {
+		ModelUserAccessibility userAccess = new ModelUserAccessibility();
+		String userAction = request.getParameter("submit");
 
-			/*********************************************
-			Description--Set a variables for getting a login details
-			@author go.hirano
-			 **********************************************/
-			String id = request.getParameter("id");
-			String password = request.getParameter("password");
-
-			/*********************************************
-			Description--call an instances for Login Assertion
-			@author go.hirano
-			 **********************************************/
-			ModelLogin login = new ModelLogin();
-			ModelLoginUserBean bean = login.loginByUserId(id, password);
-
-			/*********************************************
-			Description--Conduct Login assertions and set results to Session Scope
-			@author go.hirano
-			 **********************************************/
-			if (bean != null) {
-				session.setAttribute("user", bean);
-				session.setAttribute("state", "login");
-				session.setMaxInactiveInterval(180);
-				rd = request.getRequestDispatcher("./basic08MvcLogin/LoginRespSuccess.jsp");
-			} else {
-				rd = request.getRequestDispatcher("./basic08MvcLogin/LoginRespError.jsp");
-			}
+		if (userAction.equals("login")) {
+			rd = userAccess.login(request, session);
 			rd.forward(request, response);
 		} else {
-			session.removeAttribute("state");
-			session.removeAttribute("user");
+			userAccess.logout(session);
 			response.sendRedirect("./basic08MvcLogin/LoginReq.jsp");
 		}
 	}
